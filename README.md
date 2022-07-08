@@ -1,3 +1,15 @@
+npm i
+
+package.json 추가 내용
+
+ , “proxy”: http://localhost:[port]
+
+npm install @mui/material @emotion/react @emotion/styled
+
+npm install axios
+
+npm install react-router-dom
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
