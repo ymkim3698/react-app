@@ -40,7 +40,8 @@ export default function Board() {
     // const hour = today.getHours();
     // const minute = today.getMinutes();
     // const Second = today.getSeconds();
-    setW_DATE(year + '-' + month  + '-' + day);
+    // setW_DATE(year + '-' + month  + '-' + day);
+    setW_DATE(''+today);
   }
 
   const handleChangePage = (event, newPage) => {
