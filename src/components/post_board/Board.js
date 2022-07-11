@@ -65,7 +65,7 @@ export default function Board() {
     await axios.get('selectAll').then(res => {
       setRows(res.data);
       
-      // console.log()
+      console.log(res.data);
     }).catch(err => {
       console.log(err); 
     })
@@ -95,7 +95,7 @@ export default function Board() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
+              {Array.from(rows)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
