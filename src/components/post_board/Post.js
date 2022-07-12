@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
 
 import axios from 'axios';
 
@@ -53,67 +55,57 @@ export default function Post(props) {
 
   return (
     <>
-      <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField 
-          id="standard-basic" 
+      <DialogTitle sx={{ mt: 1 }}>
+        {postEditMode && 
+          <TextField 
+            id="standard-basic"
+            label="Title" 
+            variant="standard"
+            onChange={textHandle}
+            fullWidth
+            margin="dense"
+            value={post.TITLE || ''}
+            InputProps={{
+              readOnly: postEditMode ? false : true,
+            }}
+            name="TITLE"
+          />
+        }
+        {!postEditMode &&
+          post.TITLE
+        }
+      </DialogTitle>
+      <DialogContent>
+        <TextField
+          id="standard-basic"
+          label="name"
           variant="standard"
           onChange={textHandle}
-          value={post.TITLE || ''}
-          InputProps={{
-            readOnly: postEditMode ? false : true,
-          }}
-          name="TITLE"
-        />
-      </Box>
-      <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          onChange={textHandle}
+          fullWidth
+          margin="dense"
           value={post.WRITER || ''}
           InputProps={{
             readOnly: postEditMode ? false : true,
           }}
           name="WRITER"
         />
-      </Box>
-      <p style = {{margin:'0'}}>{post.W_DATE || ''}</p>
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '65ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-          <TextField
-            id="standard-multiline-static"
-            label="Content"
-            multiline
-            rows={10}
-            variant="standard"
-            onChange={textHandle}
-            value={post.CONTENT || ''}
-            InputProps={{
-              readOnly: postEditMode ? false : true,
-            }}
-            name="CONTENT"
-          />
-      </Box>
+        <TextField
+          id="standard-multiline-static"
+          label="Content"
+          multiline
+          rows={10}
+          variant="standard"
+          onChange={textHandle}
+          fullWidth
+          margin="dense"
+          value={post.CONTENT || ''}
+          InputProps={{
+            readOnly: postEditMode ? false : true,
+          }}
+          name="CONTENT"
+        />
+        <p style = {{margin:'10px 0 0 0'}}>{post.W_DATE || ''}</p>
+      </DialogContent>
       <DialogActions>
         {!postEditMode &&
           <>

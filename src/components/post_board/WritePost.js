@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
 
 import axios from 'axios';
 
@@ -30,60 +32,44 @@ export default function WritePost(props) {
 
   return (
     <>
-      <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
+      <DialogTitle sx={{ mt: 1 }}>
+        게시글 쓰기
+      </DialogTitle>
+      <DialogContent>
         <TextField 
+          sx={{ mt: 0 }}
           id="standard-basic" 
           label="Title" 
           variant="standard"
           onChange={textHandle}
+          fullWidth
+          margin="dense"
           value={newPost.title}
           name="TITLE"
         />
-      </Box>
-      <Box
-        component="form"
-        sx={{
-          '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
         <TextField
-          id="outlined-basic"
+          id="standard-basic"
           label="name"
-          variant="outlined"
+          variant="standard"
           onChange={textHandle}
+          fullWidth
+          margin="dense"
           value={newPost.WRITER}
           name="WRITER"
         />
-      </Box>
-      <p style = {{margin:'0'}}>{newPost.W_DATE || ''}</p>
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '65ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-          <TextField
-            id="standard-multiline-static"
-            label="Content"
-            multiline
-            rows={10}
-            variant="standard"
-            onChange={textHandle}
-            value={newPost.CONTENT}
-            name="CONTENT"
-          />
-      </Box>
+        <TextField
+          id="standard-multiline-static"
+          label="Content"
+          multiline
+          rows={10}
+          variant="standard"
+          onChange={textHandle}
+          fullWidth
+          margin="dense"
+          value={newPost.CONTENT}
+          name="CONTENT"
+        />
+      </DialogContent>
       <DialogActions>
         <Button onClick={props.close}>취소</Button>
         <Button onClick={writePost} autoFocus>
