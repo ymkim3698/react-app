@@ -9,6 +9,8 @@ import Board from '../post_board/Board';
 import MainToDo from '../todo/MainToDo';
 import Main from '../test/Main';
 
+import { Link } from 'react-router-dom';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -56,6 +58,7 @@ export default function MainTaps() {
           <Tab label="Post Board" {...a11yProps(0)} />
           <Tab label="ToDo List" {...a11yProps(1)} />
           <Tab label="infinite scroll" {...a11yProps(2)} />
+          <Link to='/signIn'>로그인</Link>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
