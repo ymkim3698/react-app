@@ -21,7 +21,7 @@ export default function WritePost(props) {
   }
 
   const writePost = async() => {
-    await axios.post('insertPost', {post: newPost}).then(res => {
+    await axios.post('/api/insertPost', {post: newPost}).then(res => {
       console.log(res);
     }).catch(err => {
       console.log(err);

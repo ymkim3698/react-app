@@ -21,7 +21,7 @@ export default function Post(props) {
   }
 
   const deletePost = async() => {
-    await axios.post('deletePost', {ID_NUM: post.ID_NUM}).then(res => {
+    await axios.post('/api/deletePost', {ID_NUM: post.ID_NUM}).then(res => {
       console.log(res);
     }).catch(err => {
       console.log(err);
@@ -31,7 +31,7 @@ export default function Post(props) {
   }
 
   const updatePost = async() => {
-    await axios.post('updatePost', {post: post, date: props.date}).then(res => {
+    await axios.post('/api/updatePost', {post: post, date: props.date}).then(res => {
       console.log(res);
     }).catch(err => {
       console.log(err);
@@ -41,7 +41,7 @@ export default function Post(props) {
   }
 
   const loadPost = async() => {
-    await axios.post('selectPost', {ID_NUM: props.ID_NUM}).then(res => {
+    await axios.post('/api/selectPost', {ID_NUM: props.ID_NUM}).then(res => {
       console.log(res.data[0]);
       setPost(res.data[0]);
     }).catch(err => {

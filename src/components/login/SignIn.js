@@ -15,18 +15,18 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import axios from 'axios';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright(props) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const theme = createTheme();
 
@@ -40,8 +40,14 @@ export default function SignIn() {
     setUser({...user, [e.target.name]:e.target.value});
   }
 
-  const selectUserData = async() => {
-    const res = await axios.post('/selectUserData', { user: user });
+  const signIn = async(e) => {
+    e.preventDefault();
+    await axios.post('/api/signIn', { user: user }).then(res => {
+      alert(res.data)
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
   return (
@@ -62,7 +68,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={selectUserData} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={signIn} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -87,10 +93,10 @@ export default function SignIn() {
               onChange={userHandle}
               value={user.password}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -99,7 +105,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
@@ -110,10 +116,10 @@ export default function SignIn() {
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

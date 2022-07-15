@@ -58,7 +58,10 @@ export default function MainTaps() {
           <Tab label="Post Board" {...a11yProps(0)} />
           <Tab label="ToDo List" {...a11yProps(1)} />
           <Tab label="infinite scroll" {...a11yProps(2)} />
+          <div style={{padding:'10px'}} />
           <Link to='/signIn'>로그인</Link>
+          <div style={{padding:'10px'}} />
+          <Link to='/signUp'>회원가입</Link>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

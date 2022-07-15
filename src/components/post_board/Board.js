@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
+import TextField from '@mui/material/TextField';
 
 import axios from 'axios';
 import WritePost from './WritePost';
@@ -31,6 +32,24 @@ export default function Board() {
   const [postOpenNum, setPostOpenNum] = React.useState();
 
   const [W_DATE, setW_DATE] = React.useState();
+
+  const [search, setSearch] = React.useState('');
+  const [searchRows, setSearchRows] = React.useState([]);
+  const [tmpRows, setTmpRows] = React.useState([]);
+
+  const searchHandle = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const searchTitle = () => {
+    tmpRows.map(tmpRow => {
+      if(tmpRow.TITLE.includes(search)){
+        setSearchRows(searchRows.push(tmpRow));
+      }
+    })
+    setRows(searchRows);
+    setSearchRows([]);
+  }
 
   const setDate = () => {
     const today = new Date();
@@ -69,8 +88,9 @@ export default function Board() {
     //   console.log(err); 
     // })
     try {
-      const res = await axios.get('selectAll');
+      const res = await axios.get('/api/selectAll');
       setRows(res.data);
+      setTmpRows(res.data);
       
       console.log(res.data);
     } catch(err) {
@@ -158,6 +178,20 @@ export default function Board() {
       >
         <Post close={handlePostOpenOrClose} loadRows={loadRows} ID_NUM={postOpenNum} date={W_DATE} />
       </Dialog>
+
+      <TextField 
+        sx={{ mt: 0 }}
+        id="standard-basic" 
+        variant="standard"
+        onChange={searchHandle}
+        fullWidth
+        margin="dense"
+        value={search || ''}
+        name="search"
+      />
+      <Button onClick={searchTitle} autoFocus>
+        검색
+      </Button>
     </>
   );
 }
