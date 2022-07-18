@@ -1,0 +1,8 @@
+.main {
+  display: grid;
+  /* grid-template-columns: 19% 62% 19%; */
+  grid-template-columns: 250px auto;
+}
+
+.sidebar { border-right: solid 1px #aabbaa; }
+

@@ -34,7 +34,7 @@ const AppWrap = styled.div`
   }
 `;
 
-const Main = () => {
+const Scroll = () => {
   const [target, setTarget] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [itemLists, setItemLists] = useState([1]);
@@ -85,4 +85,4 @@ const Main = () => {
   );
 };
 
-export default memo(Main);
+export default memo(Scroll);

@@ -7,9 +7,8 @@ import Box from '@mui/material/Box';
 
 import Board from '../post_board/Board';
 import MainToDo from '../todo/MainToDo';
-import Main from '../test/Main';
+import Scroll from '../test/Scroll';
 
-import { Link } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,6 +46,8 @@ function a11yProps(index) {
 export default function MainTaps() {
   const [value, setValue] = React.useState(0);
 
+  
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -58,10 +59,6 @@ export default function MainTaps() {
           <Tab label="Post Board" {...a11yProps(0)} />
           <Tab label="ToDo List" {...a11yProps(1)} />
           <Tab label="infinite scroll" {...a11yProps(2)} />
-          <div style={{padding:'10px'}} />
-          <Link to='/signIn'>로그인</Link>
-          <div style={{padding:'10px'}} />
-          <Link to='/signUp'>회원가입</Link>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -73,7 +70,7 @@ export default function MainTaps() {
         ToDo List
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Main />
+        <Scroll />
       </TabPanel>
     </Box>
   );
