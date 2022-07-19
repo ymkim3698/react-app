@@ -24,7 +24,7 @@ export default function Main(props) {
         <Sidebar changeCategory={changeCategory}/>
       </div>
       
-      <div className='tabs'>
+      <div className='maintabs'>
         <MainTabs/>
       </div>
     </div>
