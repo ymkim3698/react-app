@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function MainTaps() {
+export default function MainTaps(props) {
   const [value, setValue] = React.useState(0);
 
   
@@ -62,8 +62,8 @@ export default function MainTaps() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <h1>게시판</h1>
-        <Board />
+        <h1 style={{'border-bottom':'solid 1px gray'}}>게시판</h1>
+        <Board/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         {/* <MainToDo /> */}

@@ -47,6 +47,11 @@ export default function SignIn() {
     await axios.post('/api/signIn', { user: user }).then(res => {
       alert(res.data.res_msg);
       if(res.data.res_val){
+        const user = res.data.res_data[0];
+        console.log(user);
+        sessionStorage.setItem('user', user.EMAIL);
+        sessionStorage.setItem('userName', user.F_NAME+user.L_NAME);
+        sessionStorage.setItem('userLevel', user.LEVEL);
         sessionStorage.setItem('signIn', true);
         setChangeForm(true);
       }

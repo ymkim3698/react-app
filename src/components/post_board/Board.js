@@ -37,6 +37,8 @@ export default function Board() {
   const [searchRows, setSearchRows] = React.useState([]);
   const [tmpRows, setTmpRows] = React.useState([]);
 
+  const [category, setCategory] = React.useState('');
+
   const searchHandle = (e) => {
     setSearch(e.target.value);
   }
@@ -88,7 +90,14 @@ export default function Board() {
     //   console.log(err); 
     // })
     try {
-      const res = await axios.get('/api/selectAll');
+      let res = [];
+      if(sessionStorage.getItem('category')) {
+        const category = sessionStorage.getItem('category')
+        res = await axios.post('/api/selectCategoryAll', {category})
+        setCategory(category);
+      }else{
+        res = await axios.get('/api/selectAll');
+      }
       setRows(res.data);
       setTmpRows(res.data);
       
@@ -105,6 +114,17 @@ export default function Board() {
 
   return (
     <>
+      <TextField
+        sx={{ fontSize: 10, mt: 0 }}
+        id="outlined-basic"
+        variant="outlined"
+        onChange={searchHandle}
+        margin="dense"
+        value={search || ''}
+        name="search"/>
+      <Button onClick={searchTitle} autoFocus>
+        검색
+      </Button>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
@@ -178,20 +198,6 @@ export default function Board() {
       >
         <Post close={handlePostOpenOrClose} loadRows={loadRows} ID_NUM={postOpenNum} date={W_DATE} />
       </Dialog>
-
-      <TextField 
-        sx={{ mt: 0 }}
-        id="standard-basic" 
-        variant="standard"
-        onChange={searchHandle}
-        fullWidth
-        margin="dense"
-        value={search || ''}
-        name="search"
-      />
-      <Button onClick={searchTitle} autoFocus>
-        검색
-      </Button>
     </>
   );
 }
